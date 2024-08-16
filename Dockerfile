@@ -1,13 +1,32 @@
-# Stage 1: Build the Angular app
-FROM node:16 AS build
+# Stage 1: Build the Angular application
+FROM node:18 AS build
+
+# Set the working directory
 WORKDIR /app
+
+# Copy package.json and package-lock.json
 COPY package*.json ./
+
+# Install Angular CLI globally
+RUN npm install -g @angular/cli
+
+# Install project dependencies
 RUN npm install
+
+# Copy the rest of the application code
 COPY . .
-RUN npm run build -- --output-path=dist/Location
 
-# Stage 2: Serve the app with a web server
+# Build the Angular application
+RUN ng build --configuration production
+
+# Stage 2: Serve the Angular application using Nginx
 FROM nginx:alpine
-COPY --from=build /app/dist/Location /usr/share/nginx/html
 
+# Copy the Angular build output to Nginx's html folder
+COPY --from=build /app/dist/location /usr/share/nginx/html
 
+# Expose port 80
+EXPOSE 80
+
+# Start Nginx server
+CMD ["nginx", "-g", "daemon off;"]
