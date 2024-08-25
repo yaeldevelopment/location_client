@@ -20,7 +20,6 @@
             "outputPath": "dist/location",
             "index": "src/index.html",
             "browser": "src/main.ts",
-
             "polyfills": [
               "zone.js"
             ],
@@ -57,9 +56,12 @@
             "development": {
               "optimization": true,
               "sourceMap": false,
+              "extractCss": true,
               "namedChunks": false,
               "aot": true,
-              "extractLicenses": true
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true
             }
           },
           "defaultConfiguration": "production"
