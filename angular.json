@@ -56,12 +56,11 @@
             "development": {
               "optimization": true,
               "sourceMap": false,
-              "extractCss": true,
+
               "namedChunks": false,
               "aot": true,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true
+              "extractLicenses": true
+            
             }
           },
           "defaultConfiguration": "production"
