@@ -9,7 +9,7 @@ import { Location } from '../Models/location';
   providedIn: 'root'
 })
 export class LocationService {
-  apiUrl="https://localhost:44312/Location/";
+  apiUrl="https://docker-zkbk.onrender.com/Location";
   list_location=new BehaviorSubject<Location[]>([]);
   data$: Observable<Location[]> = this.list_location.asObservable(); 
   constructor(private http:HttpClient) {   this.get_location();}
