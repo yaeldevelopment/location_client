@@ -4,8 +4,8 @@ FROM node:18 AS build
 # Set the working directory
 WORKDIR /app
 
-# Copy package.json and package-lock.json
-COPY package*.json ./
+# Copy package.json and package-lock.json files
+COPY package.json package-lock.json ./
 
 # Install Angular CLI globally
 RUN npm install -g @angular/cli
@@ -17,7 +17,7 @@ RUN npm install
 COPY . .
 
 # Build the Angular application
-RUN  ng build --configuration production
+RUN ng build --configuration production
 
 # Stage 2: Serve the Angular application using Nginx
 FROM nginx:alpine
