@@ -20,19 +20,23 @@ export class IndexComponent {
 
 }
 data$: Observable<Location[]> = this.location_s.data$;
+   
   ngOnInit(): void {
     // Subscribe to data updates
-    this.data$.subscribe(data => {
+
+    this.data$.subscribe( data => {
       console.log('Data updated:', data);
+     
     });
   }
 currenL_location=new Location(0,"");
 
 Edit_Item() {
-  
+  document.body.classList.add('modal-open'); // מניעת גלילה
   this.location_s.edite_location(new Location(this.currenL_location.id,this.group_form.get("name")!.value!.toString())).subscribe(()=>{});
 }
 Add_Item() {
+  document.body.classList.add('modal-open'); // מניעת גלילה
   this.location_s.add_location(this.group_form.get("name")!.value!.toString()).subscribe(()=>{this.Is_Show_Form=0;});
 }
   group_form = this.fb.group({

@@ -23,6 +23,7 @@ $table-striping-color: #f2f2f2;
 
     tbody {
         tr {
+          display: contents;
           display: table-row;
           &[show="false"]{
             display: none !important;
@@ -47,9 +48,7 @@ $table-striping-color: #f2f2f2;
 
     // Add responsive design for smaller screens
     @media (max-width: 768px) {
-        thead {
-            display: none;
-        }
+     
 
         tbody, td, tr {
             display: block;
@@ -59,6 +58,7 @@ $table-striping-color: #f2f2f2;
 
         tr {
             margin-bottom: 10px;
+            display: contents;
         }
 
         td {
@@ -106,7 +106,7 @@ body {
   padding: 40px;
   box-sizing: border-box;
   background: #ecf0f3;
-  box-shadow: 14px 14px 20px #cbced1, -14px -14px 20px white;
+  margin: auto;
 }
 #windows_form{
   .close {
@@ -236,3 +236,24 @@ h1 {
    &[class*="hide"]
    { display: none;}
 }
+#overlay {
+  position: absolute;
+  top: 0;
+  margin: 0;
+  left: 0;
+  display: block;
+  height: 100vh;
+  width: 100%;
+  background-color: #000000b3;
+  z-index: 1000;
+}
+.container_popup{
+  z-index: 999999;
+  position: absolute;
+  margin: auto;
+  padding: 0;
+  top: 2%;
+  display: block;
+}
+
+
