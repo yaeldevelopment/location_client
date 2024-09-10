@@ -19,7 +19,7 @@
         <tbody>
 
         
-@if (!(data$ | async)) {
+@if ((data$ | async)) {
 
 
 @for (item of (data$ | async); track $index) {
