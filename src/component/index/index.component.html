@@ -1,5 +1,5 @@
 
-@if (Is_Show_Form!=0) {
+@if (Is_Show_Form!=0 ||isAlertVisible===true) {
 
     <div id="overlay"></div>
     }
@@ -22,11 +22,11 @@
 @if ((data$ | async)) {
 
 
-@for (item of (data$ | async); track $index) {
+@for (item of (data$ | async) ; track $index) {
     <tr [id]="item.id">
         <td class="name">{{item.name_Location}}</td>
         <td ><img (click)="Is_Show_Form=1;currenL_location.id=item.id;this.group_form.get('name')?.setValue(item.name_Location);" height="50" width="50" src="../asset/writer.png"></td>
-        <td><img height="50" width="50" (click)="DeleteItem(item.id)" src="../asset/delete.png"></td>
+        <td><img height="50" width="50" openAlert (click)="openAlert(item.id)" src="../asset/delete.png"></td>
 
     </tr>
 }
@@ -61,3 +61,10 @@
 
 
 </div></div>
+
+@if(isAlertVisible){
+<app-alert
+   [elementId]="selectedElementId" 
+  (alertResponse)="handleAlertResponse($event)">
+</app-alert>
+}

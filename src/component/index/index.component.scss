@@ -11,22 +11,25 @@ $table-striping-color: #f2f2f2;
     margin: 0 auto;
 
     thead {
+
         background-color: $table-header-bg;
         width: 100%;
-        display: flex;
         justify-content: space-between;
+        @media (max-width: 768px) {
+        display: flex;}
         th {
             padding: 12px;
             text-align: left;
             font-weight: bold;
-            border-bottom: 2px solid $table-border-color;
+     
         }
     }
 
     tbody {
         tr {
-          display: contents;
-          display: table-row;
+          @media (max-width: 768px) {
+            display: flex;
+          }
           &[show="false"]{
             display: none !important;
           }
@@ -253,11 +256,12 @@ h1 {
   position: absolute;
   margin: auto;
   padding: 0;
-  top: 2%;
+  top: 5%;
   display: block;
 }
 p{
   margin-bottom: 10px;
 }
+
 
 
