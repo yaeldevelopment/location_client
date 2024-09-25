@@ -17,10 +17,10 @@ import { AlertComponent } from '../alert/alert.component';
 })
 export class IndexComponent { 
   isAlertVisible: boolean = false;  // Control alert visibility
-  selectedElementId: Number = 0;  // Hold the selected element ID
+  selectedElementId: string = "0";  // Hold the selected element ID
 
   // Open the alert and pass the element ID
-  openAlert(id: Number): void {
+  openAlert(id: string): void {
     this.selectedElementId = id;
     this.isAlertVisible = true;
   }
@@ -38,7 +38,7 @@ data$: Observable<Location[]> = this.location_s.data$;
      
     });
   }
-currenL_location=new Location(0,"");
+currenL_location=new Location("0","");
 
 Edit_Item() {
   document.body.classList.add('modal-open'); // מניעת גלילה
@@ -56,7 +56,7 @@ Add_Item() {
 Is_Show_Form:number=0;
 
 
-DeleteItem(id:Number) {
+DeleteItem(id:string) {
   
   this.location_s.delete_location(id).subscribe(()=>{});
 
@@ -67,7 +67,7 @@ handleAlertResponse(response: { confirmed: boolean, id: string }) {
 
   if (response.confirmed) {
     console.log('Confirmed for ID:', response.id);
-    this.DeleteItem( parseInt(response.id));  // Execute the function if Yes is clicked
+    this.DeleteItem( response.id);  // Execute the function if Yes is clicked
   }
     // Add your logic here, e.g., delete item or perform another action
   }

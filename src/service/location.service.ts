@@ -9,7 +9,7 @@ import { Location } from '../Models/location';
   providedIn: 'root'
 })
 export class LocationService {
-  apiUrl="https://docker-zkbk.onrender.com/Location/";
+  apiUrl="https://location-mongo.onrender.com/api/location";
   list_location=new BehaviorSubject<Location[]>([]);
   data$: Observable<Location[]> = this.list_location.asObservable(); 
   constructor(private http:HttpClient) {   this.get_location();}
@@ -20,11 +20,8 @@ export class LocationService {
       this.list_location.next(data);
     });
   }
-  delete_location(id:Number):Observable<void>{
-    return this.http.request<void>('DELETE', this.apiUrl+"DeleteLocation", {
-      body: JSON.stringify({ id: id }),
-      headers: { 'Content-Type': 'application/json' }
-    }).pipe( 
+  delete_location(id:string):Observable<void>{
+    return this.http.request<void>('Delete', this.apiUrl+`/deleteById/${id}`).pipe( 
        map(() => {
         this.get_location()
     })
@@ -33,10 +30,12 @@ export class LocationService {
       const headers = new HttpHeaders({
         "Content-Type": "application/json"
       });
+     
+      
+    let location=new Location("0",Name);
+  return this.http.post<any>(this.apiUrl+"/insertById", { id: 0 ,name:Name} 
   
-      
-      
-  return this.http.post<any>(this.apiUrl+"PostLocation", `\"${Name}\"`, { headers }).pipe( 
+   ).pipe( 
     map(() => {
      this.get_location()
  })
@@ -45,8 +44,8 @@ export class LocationService {
 edite_location(object_location:Location):Observable<void>{
 
 
- return this.http.request<void>('PUT', this.apiUrl+"PutLocation", {
-  body: JSON.stringify({ Id: object_location.id ,name_Location:object_location.name_Location}),
+ return this.http.request<void>('PUT', this.apiUrl+"/updateById", {
+  body: JSON.stringify({ id: object_location.id ,name:object_location.name}),
   headers: { 'Content-Type': 'application/json' }
 }).pipe( 
   map(() => {

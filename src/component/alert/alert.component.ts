@@ -8,7 +8,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrl: './alert.component.scss'
 })
 export class AlertComponent {
-  @Input() elementId: Number = 0;  // Accept element ID
+  @Input() elementId:string = "0";  // Accept element ID
   @Output() alertResponse = new EventEmitter<{ confirmed: boolean, id: string }>();
 
   onYesClick(): void {
