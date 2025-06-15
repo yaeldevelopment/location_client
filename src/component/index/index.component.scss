@@ -3,7 +3,31 @@ $table-header-bg: #f4f4f4;
 $table-hover-bg: #f9f9f9;
 $table-striping-color: #f2f2f2;
 
+tbody {
+  tr {
+    @media (max-width: 768px) {
+      display: flex;
+    }
+    &[show="false"]{
+      display: none !important;
+    }
+      &:nth-of-type(even) {
+          background-color: $table-striping-color;
+      }
 
+      &:hover {
+          background-color: $table-hover-bg;
+      }
+
+      td {
+          padding: 12px;
+          border-bottom: 1px solid $table-border-color;
+          img{
+              cursor: pointer;
+          }
+      }
+  }
+}
 
 .styled-table {
     width: 100%;
@@ -25,31 +49,7 @@ $table-striping-color: #f2f2f2;
         }
     }
 
-    tbody {
-        tr {
-          @media (max-width: 768px) {
-            display: flex;
-          }
-          &[show="false"]{
-            display: none !important;
-          }
-            &:nth-of-type(even) {
-                background-color: $table-striping-color;
-            }
-
-            &:hover {
-                background-color: $table-hover-bg;
-            }
-
-            td {
-                padding: 12px;
-                border-bottom: 1px solid $table-border-color;
-                img{
-                    cursor: pointer;
-                }
-            }
-        }
-    }
+    
 
     // Add responsive design for smaller screens
     @media (max-width: 768px) {
